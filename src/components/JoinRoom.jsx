@@ -119,6 +119,7 @@ const handledeleteroom=async()=>{
     if(!reverify){
         return;
     }
+    setspinner(true);
     try {
         const response = await fetch(`https://webalar-backend-nui9.onrender.com/team/delete/${roomId}`,{
             method:"DELETE",
@@ -129,12 +130,15 @@ const handledeleteroom=async()=>{
         const result = await response.json();
         if(result.error){
             toast(result.error);
+            setspinner(false);
             return;
         }
+        setspinner(false);
         alert("Room deleted");
         navigate('/');
     } catch (error) {
         toast(error);
+        setspinner(false);
         return;
     }
 }
