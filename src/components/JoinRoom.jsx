@@ -120,7 +120,7 @@ const handledeleteroom=async()=>{
         return;
     }
     try {
-        const response = await fetch(`http://localhost:4100/team/delete/${roomId}`,{
+        const response = await fetch(`https://webalar-backend-nui9.onrender.com/team/delete/${roomId}`,{
             method:"DELETE",
             headers:{
                 "content-type":"application/json"
