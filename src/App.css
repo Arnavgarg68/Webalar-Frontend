@@ -1,38 +1,262 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Rubik", sans-serif;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body{
+  background: url("./imags/Graffiti1x1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  position: relative;
 }
+.loader{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+/* navbar css */
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.navbar-main{
+  background-color: rgba(240, 255, 255, 0.625);
+  box-shadow: 2px 2px 10px black;
+  backdrop-filter: blur(5px);
+  z-index: 100000;
+}
+.navbar-inner-main{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+.navbar-logo>img{
+  height: 100px;
+}
+.navbar-details{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.navbar-subdetails{
+  color: white;
+  padding: 10px;
+  font-size: 20px;
+  background-color: blue;
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: 0px 0px 10px grey;
+  transition: all 0.2s ease-in-out;
+}
+.navbar-subdetails:hover{
+  scale: 1.05;
+}
+@media only screen and (max-width:650px) {
+  .navbar-inner-main{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .navbar-details{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
   }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* login css */
+.login-main{
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(300px,40vw,500px);
+  height: clamp(300px,60vh,700px);
+  box-shadow: 0px 0px 10px black;
+  background-color: rgba(255, 255, 255, 0.456);
+  backdrop-filter: blur(5px);
+}
+.signup-main{
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(300px,40vw,500px);
+  height: clamp(350px,70vh,700px);
+  box-shadow: 0px 0px 10px black;
+  background-color: rgba(255, 255, 255, 0.456);
+  backdrop-filter: blur(5px);
+}
+.login-inner{
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 20px;
+  gap: 20px;
+}
+.login-logo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.login-logo>img{
+  width: 100px;
+  height: 100px;
+}
+.login-logo>span{
+  font-size: 2rem;
+}
+.login-details>form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.login-input{
+  width: clamp(270px , 30vw ,390px);
+  height: clamp(20px , 10vh ,50px);
+  border-radius: 20px;
+  outline: none;
+  border: 0;
+  box-shadow: 0px 0px 5px black;
+  padding: 20px;
+  font-size: 20px;
+}
+.login-submit{
+  min-width:150px;
+  min-height:40px ;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  outline: none;
+  border: 0;
+  box-shadow: 2px 2px 8px black;
+  cursor: pointer;
+}
+
+/* profile css */
+.profile-inner{
+  display: flex;
+  padding: 10px;
+  margin-top: 50px;
+  gap: 40px;
+  width: 100%;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+.profile-sections{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 80%;
+}
+.alloted-tasks{
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  /* background-color:bisque; */
+  flex-direction: column-reverse;
+  padding: 10px;
+  /* width: clamp(300px,70vw,800px); */
+  width: 100%;
+  
+
+}
+.alloted-task-card{
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+.alloted-task-status>input{
+  height: 40px;
+  width: 40px;
+}
+.alloted-task{
+  padding: 10px;
+  text-align: center;
+  font-size: 1.5rem;
+  background-color: azure;
+  /* height: 30px; */
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px black;
+  width: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.alloted-task-delete{
+  font-size: 1.2rem;
+  padding: 5px;
+  box-shadow: 4px 4px 5px black;
+  background-color: red;
   color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
-
-.App-link {
-  color: #61dafb;
+@media only screen and (max-width:500px){
+  .alloted-task-card{
+    width: 100%;
+    align-items: center;
+  }
+  .alloted-task{
+    font-size: 1.1rem;
+    width: 60%;
+  }
+  .alloted-task-status>input{
+    height: 30px;
+    width: 30px;
+  }
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.alloted-task-delete:hover{
+  scale: 1.05;
+  box-shadow: 5px 5px 12px black;
+}
+.profile-sections>span{
+  color: white;
+  text-shadow: 2px 2px 3px black ;
+  font-size: 2rem;
+}.profile-newtask-card{
+  width: 100%;
+}
+.profile-newtask-card>form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.profile-newtask-input{
+  width: 100%;
+  max-width: 600px;
+  height: 40px;
+  padding: 10px;
+  font-size: 20px;
+  outline: none;
+  border-radius: 10px ;
+  border: 0;
+  box-shadow: 0px 0px 10px green;
+}
+.profile-newtask-button{
+  width: 100px;
+  height: 50px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  border: 0;
+  box-shadow: 2px 2px 5px grey;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.profile-newtask-button:hover{
+  scale:1.05;
+  box-shadow: 3px 3px 6px black;
 }
