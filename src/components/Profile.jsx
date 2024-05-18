@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { BounceLoader } from 'react-spinners';
+import './profile.css'
 export default function Profile() {
     const { register, handleSubmit } = useForm();
     const [userdata, setuserdata] = useState();

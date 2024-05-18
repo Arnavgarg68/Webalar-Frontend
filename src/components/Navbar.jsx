@@ -3,6 +3,7 @@ import logo from '../imags/Logo_cropped-removebg-preview.png'
 import { BounceLoader } from 'react-spinners';
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
+import './navbar.css'
 export default function Navbar() {
   const [spin,setspin] = useState(false);
   const navigate = useNavigate();

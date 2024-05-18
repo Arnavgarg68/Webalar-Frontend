@@ -1,0 +1,122 @@
+.profile-inner{
+    display: flex;
+    padding: 10px;
+    margin-top: 50px;
+    gap: 40px;
+    width: 100%;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+  }
+  .profile-sections{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 80%;
+  }
+  .alloted-tasks{
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    /* background-color:bisque; */
+    flex-direction: column-reverse;
+    padding: 10px;
+    /* width: clamp(300px,70vw,800px); */
+    width: 100%;
+    
+  
+  }
+  .alloted-task-card{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    padding: 5px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.511);
+  }
+  .alloted-task-status>input{
+    height: 40px;
+    width: 40px;
+  }
+  .alloted-task{
+    padding: 10px;
+    text-align: center;
+    font-size: 1.5rem;
+    background-color: azure;
+    /* height: 30px; */
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px black;
+    width: 50%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .alloted-task-delete{
+    font-size: 1.2rem;
+    padding: 5px;
+    box-shadow: 4px 4px 5px black;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  @media only screen and (max-width:500px){
+    .alloted-task-card{
+      width: 100%;
+      align-items: center;
+    }
+    .alloted-task{
+      font-size: 1.1rem;
+      width: 60%;
+    }
+    .alloted-task-status>input{
+      height: 30px;
+      width: 30px;
+    }
+  }
+  .alloted-task-delete:hover{
+    scale: 1.05;
+    box-shadow: 5px 5px 12px black;
+  }
+  .profile-sections>span{
+    color: white;
+    text-shadow: 2px 2px 3px black ;
+    font-size: 2rem;
+  }.profile-newtask-card{
+    width: 100%;
+  }
+  .profile-newtask-card>form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+  .profile-newtask-input{
+    width: 100%;
+    max-width: 600px;
+    height: 40px;
+    padding: 10px;
+    font-size: 20px;
+    outline: none;
+    border-radius: 10px ;
+    border: 0;
+    box-shadow: 0px 0px 10px green;
+  }
+  .profile-newtask-button{
+    width: 100px;
+    height: 50px;
+    font-size: 1.1rem;
+    border-radius: 10px;
+    border: 0;
+    box-shadow: 2px 2px 5px grey;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .profile-newtask-button:hover{
+    scale:1.05;
+    box-shadow: 3px 3px 6px black;
+  }
