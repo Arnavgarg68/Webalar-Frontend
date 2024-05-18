@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,6 +9,7 @@ export default function JoinRoom() {
     const [teamdata, setteamdata] = useState();
     const [spinner, setspinner] = useState(true);
     const { roomId } = useParams();
+    const navigate = useNavigate();
   // handle loading of page
   const fetchdata = async (roomId) => {
     try {
@@ -112,6 +113,31 @@ const handledelete = async(e)=>{
         setspinner(false);
     }
 }
+// handle room delete
+const handledeleteroom=async()=>{
+    const reverify = window.confirm("Are you sure want to delete room?");
+    if(!reverify){
+        return;
+    }
+    try {
+        const response = await fetch(`http://localhost:4100/team/delete/${roomId}`,{
+            method:"DELETE",
+            headers:{
+                "content-type":"application/json"
+            }
+        });
+        const result = await response.json();
+        if(result.error){
+            toast(result.error);
+            return;
+        }
+        alert("Room deleted");
+        navigate('/');
+    } catch (error) {
+        toast(error);
+        return;
+    }
+}
 useEffect(() => {
     fetchdata(roomId);
 }, [roomId])
@@ -131,6 +157,7 @@ return (<>
                     <form action="" onSubmit={handleSubmit(handlenewTask)}>
                         <input type="text" className="profile-newtask-input" placeholder='new task' {...register("taskname")} id='form-newtask'/>
                         <button type='submit' className="profile-newtask-button">Add</button>
+                        <button type="button" className="profile-newtask-button" onClick={handledeleteroom} style={{backgroundColor:"red",padding:"5px",color:"white"}}>Delete room</button>
                     </form>
                 </div>
             </div>
