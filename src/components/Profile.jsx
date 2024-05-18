@@ -12,7 +12,7 @@ export default function Profile() {
     // handle loading of page
     const fetchdata = async (id) => {
         try {
-            const response = await fetch(`http://localhost:4100/data/${id}`, {
+            const response = await fetch(`https://webalar-backend-nui9.onrender.com/data/${id}`, {
                 method: "GET",
                 headers: {
                     "authorization": localStorage.getItem("authToken"),
@@ -25,11 +25,9 @@ export default function Profile() {
                 setspinner(false);
                 return;
             }
-            console.log(result.user)
             setuserdata(result.user.tasks)
             setspinner(false);
         } catch (error) {
-            console.log(error)
             setspinner(false);
         }
     }
@@ -42,7 +40,7 @@ export default function Profile() {
             return;
         }
         try {
-            const response = await fetch(`http://localhost:4100/newtask/${id}`, {
+            const response = await fetch(`https://webalar-backend-nui9.onrender.com/newtask/${id}`, {
                 method: "POST",
                 headers: {
                     "authorization": localStorage.getItem('authToken'),
@@ -70,9 +68,8 @@ export default function Profile() {
             setspinner(true);
             const currenttask = userdata.filter((task) => task._id == e)[0];
             const currentstatus = currenttask.taskstatus;
-            console.log(currentstatus)
             const newstatus = !(currentstatus);
-            const response = await fetch(`http://localhost:4100/status/${id}/${e}`, {
+            const response = await fetch(`https://webalar-backend-nui9.onrender.com/status/${id}/${e}`, {
                 method: "PATCH",
                 headers: {
                     "authorization": localStorage.getItem("authToken"),
@@ -81,7 +78,6 @@ export default function Profile() {
                 body: JSON.stringify({ newtaskstatus: newstatus })
             })
             const result = await response.json();
-            console.log(result)
             if(result.error){
                 toast(result.error);
                 setspinner(false);
@@ -90,7 +86,6 @@ export default function Profile() {
             setspinner(false);
             setuserdata(result.user.tasks)
         } catch (error) {
-            console.log(error)
             toast(error);
             setspinner(false);
         }
@@ -99,7 +94,7 @@ export default function Profile() {
     const handledelete = async(e)=>{
         try {
             setspinner(true);
-            const response = await fetch(`http://localhost:4100/delete/${id}/${e}`,{
+            const response = await fetch(`https://webalar-backend-nui9.onrender.com/delete/${id}/${e}`,{
                 method:"DELETE",
                 headers:{
                     "authorization":localStorage.getItem("authToken"),
@@ -116,7 +111,6 @@ export default function Profile() {
             setspinner(false);
 
         } catch (error) {
-            console.log(error)
             toast(error);
             setspinner(false);
         }
@@ -146,9 +140,9 @@ export default function Profile() {
                     {
                         userdata ? (
                             userdata.map((e) => (
-                                <div className="alloted-task-card">
+                                <div className="alloted-task-card" key={e._id}>
                                     <div className="alloted-task-status">
-                                        <input type="checkbox" checked={e.taskstatus} onClick={() => { handlestatus(e._id) }} />
+                                        <input type="checkbox" onChange={()=>{}} checked={e.taskstatus} onClick={() => { handlestatus(e._id) }} />
                                     </div>
                                     <div className='alloted-task' style={{ textDecoration: e.taskstatus?'line-through':'none' }}>{e.taskname}</div>
                                     <button className="alloted-task-delete" onClick={() => { handledelete(e._id) }}>Delete</button>

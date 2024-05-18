@@ -13,7 +13,7 @@ export default function Login() {
     const onSubmit = async (data) => {
         setspinner(true);
         try {
-            const response = await fetch('http://localhost:4100/userLogin', {
+            const response = await fetch('https://webalar-backend-nui9.onrender.com/userLogin', {
                 method: "POST",
                 headers: {
                     "content-type": "application/json"
@@ -21,7 +21,6 @@ export default function Login() {
                 body: JSON.stringify(data)
             })
             const result = await response.json();
-            console.log(result)
             if(result.error){
                 toast(result.error);
                 setspinner(false);
@@ -32,7 +31,7 @@ export default function Login() {
             navigate(`/profile/${result.user._id}`)
             
         } catch (error) {
-            console.log(error)
+            toast(error);
             setspinner(false);
         }
     }

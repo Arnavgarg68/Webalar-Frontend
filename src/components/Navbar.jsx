@@ -7,7 +7,7 @@ export default function Navbar() {
   const createRoom = async () => {
     const roomId = prompt("Enter a unique room ID");
     try {
-      const response = await fetch(`http://localhost:4100/create-team/${roomId}`, {
+      const response = await fetch(`https://webalar-backend-nui9.onrender.com/create-team/${roomId}`, {
         method: "GET",
         headers: {
           "content-type": "application/json"
@@ -31,7 +31,7 @@ export default function Navbar() {
       alert("no room Id entered");
       return;
     }
-    const response = await fetch(`http://localhost:4100/team/${roomId}`,{
+    const response = await fetch(`https://webalar-backend-nui9.onrender.com/team/${roomId}`,{
       method:"GET",
       headers:{
         "content-type":"application/json"

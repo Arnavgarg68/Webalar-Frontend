@@ -12,24 +12,22 @@ export default function JoinRoom() {
   // handle loading of page
   const fetchdata = async (roomId) => {
     try {
-        const response = await fetch(`http://localhost:4100/team/${roomId}`, {
+        const response = await fetch(`https://webalar-backend-nui9.onrender.com/team/${roomId}`, {
             method: "GET",
             headers: {
                 "content-type": "application/json"
             }
         })
         const result = await response.json();
-        console.log(result)
         if (result.error) {
             toast(result.error);
             setspinner(false);
             return;
         }
-        console.log(result.team.tasks)
         setteamdata(result.team.tasks)
         setspinner(false);
     } catch (error) {
-        console.log(error)
+        toast(error);
         setspinner(false);
     }
 }
@@ -42,7 +40,7 @@ const handlenewTask = async (data) => {
         return;
     }
     try {
-        const response = await fetch(`http://localhost:4100/team/newtask/${roomId}`, {
+        const response = await fetch(`https://webalar-backend-nui9.onrender.com/team/newtask/${roomId}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -67,11 +65,10 @@ const handlenewTask = async (data) => {
 const handlestatus = async (e) => {
     try {
         setspinner(true);
-        const currenttask = teamdata.filter((task) => task._id == e)[0];
+        const currenttask = teamdata.filter((task) => task._id === e)[0];
         const currentstatus = currenttask.taskstatus;
-        console.log(currentstatus)
         const newstatus = !(currentstatus);
-        const response = await fetch(`http://localhost:4100/team/status/${roomId}/${e}`, {
+        const response = await fetch(`https://webalar-backend-nui9.onrender.com/team/status/${roomId}/${e}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json"
@@ -79,7 +76,6 @@ const handlestatus = async (e) => {
             body: JSON.stringify({ newtaskstatus: newstatus })
         })
         const result = await response.json();
-        console.log(result)
         if(result.error){
             toast(result.error);
             setspinner(false);
@@ -88,7 +84,6 @@ const handlestatus = async (e) => {
         setspinner(false);
         setteamdata(result.team.tasks)
     } catch (error) {
-        console.log(error)
         toast(error);
         setspinner(false);
     }
@@ -97,7 +92,7 @@ const handlestatus = async (e) => {
 const handledelete = async(e)=>{
     try {
         setspinner(true);
-        const response = await fetch(`http://localhost:4100/team/delete/${roomId}/${e}`,{
+        const response = await fetch(`https://webalar-backend-nui9.onrender.com/team/delete/${roomId}/${e}`,{
             method:"DELETE",
             headers:{
                 "content-type":"application/json"
@@ -113,7 +108,6 @@ const handledelete = async(e)=>{
         setspinner(false);
 
     } catch (error) {
-        console.log(error)
         toast(error);
         setspinner(false);
     }
@@ -144,9 +138,9 @@ return (<>
                 {
                     teamdata ? (
                         teamdata.map((e) => (
-                            <div className="alloted-task-card">
+                            <div className="alloted-task-card" key={e._id}>
                                 <div className="alloted-task-status">
-                                    <input type="checkbox" checked={e.taskstatus} onClick={() => { handlestatus(e._id) }} />
+                                    <input type="checkbox" onChange={()=>{}} checked={e.taskstatus} onClick={() => { handlestatus(e._id) }} />
                                 </div>
                                 <div className='alloted-task' style={{ textDecoration: e.taskstatus?'line-through':'none' }}>{e.taskname}</div>
                                 <button className="alloted-task-delete" onClick={() => { handledelete(e._id) }}>Delete</button>

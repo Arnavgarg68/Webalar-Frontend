@@ -10,14 +10,11 @@ export default function Signup() {
     const navigate = useNavigate();
     const [spinner,setspinner] = useState(false);
     const { register, handleSubmit } = useForm()
-    const notify = ()=>{
-        toast("vnkjdensm")
-    }
     const onSubmit=async(data)=>{
         setspinner(true);
         try {       
 
-                const response = await fetch("http://localhost:4100/userSignup",{
+                const response = await fetch("https://webalar-backend-nui9.onrender.com/userSignup",{
                     method:"POST",
                     headers:{
                         "Content-Type":"application/json"
@@ -31,12 +28,11 @@ export default function Signup() {
                     return;
                 }
                 localStorage.setItem('authToken', `Bearer ${result.auth}`);
-                console.log(result.auth)
                 setspinner(false);
                 navigate(`/profile/${result.user._id}`)
         } catch (error) {
             setspinner(false)
-            console.log(error)
+            toast(error);
         }
     }
   return (
